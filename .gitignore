@@ -1,3 +1,8 @@
+# Directories
+pilot/
+survey_gamification/
+DataCard/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

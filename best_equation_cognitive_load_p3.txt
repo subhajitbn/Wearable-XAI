@@ -1,1 +1,0 @@
-rms \left(rms - \left(rms - -0.0244\right) 0.999\right) + 0.946
