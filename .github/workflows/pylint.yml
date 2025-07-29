@@ -22,7 +22,7 @@ jobs:
           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
       - name: Install dependencies using uv
-        run: uv pip install --system --all-extras
+        run: uv pip install --system --editable .
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$GITHUB_WORKSPACE/src" >> $GITHUB_ENV
