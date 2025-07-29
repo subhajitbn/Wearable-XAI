@@ -5,7 +5,7 @@ from sklearn.metrics import classification_report
 
 from .utils import create_windows_and_features
 
-def grid_search_for_optimal_window_size(baseline_signal, cogload_signal, window_sizes, step_sizes, threshold=0.95):
+def grid_search_for_optimal_window_size(baseline_signal, cogload_signal, window_sizes, step_sizes, threshold=0.95, seed=42):
     for window_size in window_sizes:
         for step_size in step_sizes:
             # Create windows and features for both baseline and cognitive load signals
@@ -21,16 +21,17 @@ def grid_search_for_optimal_window_size(baseline_signal, cogload_signal, window_
             X = np.vstack([baseline_features, cogload_features])
             y = np.concatenate([np.zeros(len(baseline_features)), np.ones(len(cogload_features))])
             
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8, stratify=y, random_state=42)
-            model = RandomForestClassifier(n_estimators=100, random_state=42)
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8, stratify=y, random_state=seed)
+            model = RandomForestClassifier(n_estimators=100, random_state=seed)
             model.fit(X_train, y_train)
+            
             y_pred = model.predict(X_test)
             model_report = classification_report(y_test, y_pred, output_dict=True)
             accuracy = model_report['accuracy']
-            print(f"Window Size: {window_size}, Step Size: {step_size}, Accuracy: {accuracy}")
+            
             if accuracy >= threshold:
-                print(f"Optimal window size found: {window_size} with step size {step_size}")
-                print("Classification Report:\n", classification_report(y_test, y_pred))
+                # print(f"Optimal window size found: {window_size} with step size {step_size}")
+                # print("Classification Report:\n", classification_report(y_test, y_pred))
                 return model, X, y, feature_names, window_size, step_size
             else:
                 raise ValueError(f"Accuracy {accuracy} is below threshold.")
