@@ -1,10 +1,6 @@
 # Directories
-pilot/
-survey_gamification/
-DataCard/
-
-# Intermediate files
-*.csv
+data/
+output/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
