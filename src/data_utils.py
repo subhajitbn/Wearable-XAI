@@ -3,7 +3,8 @@ import numpy as np
 import pandas as pd
 from scipy.signal import resample
 
-from engineered_features import create_features
+from .engineered_features import create_features
+from .utils import create_windows
 
 def load_device_signals(participant_id, data_folder = "../data/", data_root="pilot", device="empatica", physioparam="bvp", condition="baseline"):
     """
@@ -27,31 +28,14 @@ def load_device_signals(participant_id, data_folder = "../data/", data_root="pil
 
     
     ebvp = pd.read_csv(os.path.join(base_path, "empatica_bvp.csv"))["bvp"].values
-    # Trim 2 sec at start & end from BVP to match EDA/TEMP preprocessing
-    sec_remove = 10
+    # Trim 5 sec at start & end from BVP to match EDA/TEMP preprocessing
+    sec_remove = 5
     ebvp = ebvp[64 * sec_remove : -64 * sec_remove]  # 64 Hz
 
     return {
         "bvp": ebvp
     }
 
-def create_windows(signal, window_size=256, step_size=64):
-    """
-    Create overlapping windows of given size from a signal.
-
-    Parameters:
-    signal (1D array): The signal to create windows from.
-    window_size (int): The size of each window. Default is 256.
-    step_size (int): The step size between each window. Default is 64.
-
-    Returns:
-    2D array: A 2D array containing the overlapping windows from the signal.
-    """
-    windows = []
-    for start in range(0, len(signal) - window_size + 1, step_size):
-        window = signal[start:start+window_size]
-        windows.append(window)
-    return np.stack(windows)
 
 def create_windows_and_features(participant_id, condition, window_size, step_size):
     """
