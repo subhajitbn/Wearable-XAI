@@ -1,27 +1,30 @@
+"""
+This module provides utility functions for loading and processing signals from CogWear dataset.
+"""
 import os
 import numpy as np
 import pandas as pd
-from scipy.signal import resample
 
 from .engineered_features import create_features
 from .utils import create_windows
 
-def load_device_signals(participant_id, data_folder = "../data/", data_root="pilot", device="empatica", physioparam="bvp", condition="baseline"):
+def load_device_signals(participant_id,
+                        data_folder = "../data/",
+                        data_root = "pilot",
+                        condition = "baseline"):
+
     """
-    Load and preprocess physiological signals from specified device for a given participant.
+    Load physiological signals from various devices for a given participant and condition.
 
     Parameters:
     participant_id (int or str): The ID of the participant whose data to load.
-    data_root (str): The root directory where participant data is stored. Default is "pilot".
-    device (str): The device from which to load data. Options are "empatica", "samsung", "muse".
-    physioparam (str): The physiological parameter to load. Default is "bvp".
-    condition (str): The condition under which data was collected. Default is "baseline".
+    data_folder (str): The folder containing the data. Defaults to "../data/".
+    data_root (str): The root folder of the dataset. Defaults to "pilot".
+    condition (str): The condition under which data was collected, e.g., 'baseline' or 'cognitive_load'. Defaults to "baseline".
 
     Returns:
-    dict: A dictionary containing preprocessed physiological data, currently only "bvp" data is returned.
+    dict: A dictionary containing physiological signals from each device. The keys are the device names, and the values are the signal values as a NumPy array.
     """
-
-    devices = ["empatica", "samsung", "muse"]
 
     pid = str(participant_id)
     base_path = os.path.join(data_folder, data_root, pid, condition)

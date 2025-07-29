@@ -11,8 +11,14 @@ dependencies = [
     "matplotlib>=3.10.3",
     "numpy>=2.3.2",
     "pandas>=2.3.1",
+    "pytest>=8.4.1",
     "rich>=14.1.0",
     "rpy2>=3.6.1",
     "scikit-learn>=1.7.1",
     "seaborn>=0.13.2",
+]
+
+[dependency-groups]
+dev = [
+    "pylint>=3.3.7",
 ]

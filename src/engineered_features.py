@@ -1,3 +1,6 @@
+"""
+Feature engineering module for signal processing.
+"""
 import numpy as np
 from scipy.signal import find_peaks, peak_widths, peak_prominences
 

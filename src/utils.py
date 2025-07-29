@@ -1,3 +1,6 @@
+"""
+This module provides utility functions for loading and processing any BVP signal from csv file.
+"""
 import os
 import numpy as np
 import pandas as pd
@@ -57,7 +60,19 @@ def create_windows(signal, window_size=256, step_size=64):
 
 
 def create_windows_and_features(signal, window_size, step_size):
+    """
+    Create overlapping windows of given size from a signal and calculate features from each window.
 
+    Parameters:
+    signal (1D array): The signal to create windows from.
+    window_size (int): The size of each window.
+    step_size (int): The step size between each window.
+
+    Returns:
+    tuple: A tuple containing two elements:
+        - features (2D array): A 2D array containing the calculated features from each window.
+        - feature_names (list): A list of feature names corresponding to the features in the output array.
+    """
     signal_windows = create_windows(signal, window_size = window_size, step_size = step_size)
     
     features = np.array([list(create_features(window).values()) for window in signal_windows])

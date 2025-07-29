@@ -1,3 +1,8 @@
+"""
+Main script for running the rule extraction pipeline on BVP signals.
+This script loads baseline and cognitive load signals from CSV files, performs a grid search for optimal window and step sizes,
+"""
+# pylint: disable=wrong-import-order, wrong-import-position, ungrouped-imports
 from src.suppress_errmsg import suppress_rpy2_and_other_errmsg, suppress_output
 suppress_rpy2_and_other_errmsg()
 
@@ -5,7 +10,6 @@ suppress_rpy2_and_other_errmsg()
 import click
 from rich.console import Console
 from rich.panel import Panel
-from rich.markdown import Markdown
 from rich.text import Text
 from rich.rule import Rule
 
@@ -20,24 +24,38 @@ from rpy2.robjects import pandas2ri
 from rpy2.robjects.conversion import localconverter
 
 # Custom modules
-from src.utils import load_signals_from_csv, create_windows
-from src.engineered_features import create_features
+from src.utils import load_signals_from_csv
 from src.grid_search import grid_search_for_optimal_window_size
 # from src.suppress_errmsg import silent_rpy2
 
 # Regex for styling rules
 import re
+# pylint: enable=wrong-import-order, wrong-import-position, ungrouped-imports
 
 seed = 4242  # For reproducibility
 console = Console()
 
 def print_rules_pretty(rules):
+    """
+    Formats and prints a list of rules with stylized text using Rich library.
+
+    Each rule is processed to extract and highlight different components:
+    - Rule numbers are bolded and colored in magenta.
+    - Numeric conditions and comparison operators are highlighted.
+    - Numeric values and counts are colored in cyan and dimmed respectively.
+
+    The formatted rules are then displayed in a panel with a green border.
+
+    Parameters:
+    rules (list of str): A list of rules to be formatted and printed.
+    """
+
     styled_rules = []
 
     for rule in rules:
         # Extract rule number
-        number_match = re.match(r'\s*\[(\d+)\]', rule)
-        number = number_match.group(1) if number_match else "?"
+        # number_match = re.match(r'\s*\[(\d+)\]', rule)
+        # number = number_match.group(1) if number_match else "?"
         
         # Style condition
         rule_text = rule.strip()
@@ -60,10 +78,28 @@ def print_rules_pretty(rules):
     )
     console.print(panel)
 
-
+# pylint: disable=too-many-locals
 def run_pipeline(baseline_path, cogload_path):
 
     # Load signals
+    """
+    Executes the rule extraction pipeline on BVP signals, performing grid search for optimal window and step sizes,
+    feature selection, and rule-based classification using SIRUS.
+
+    Parameters:
+    baseline_path (str): Path to the CSV file containing the baseline signal data.
+    cogload_path (str): Path to the CSV file containing the cognitive load signal data.
+
+    The function performs the following operations:
+    1. Loads baseline and cognitive load signals from CSV files.
+    2. Conducts a grid search to find optimal window and step sizes for feature extraction.
+    3. Selects the top 3 features based on feature importances from a Random Forest model.
+    4. Fits a SIRUS model on the selected features and extracts classification rules.
+    5. Displays the extracted rules and calculates the model's prediction accuracy.
+
+    The results are printed to the console using the Rich library for enhanced visualization.
+    """
+
     baseline_signal = load_signals_from_csv(baseline_path)
     cogload_signal = load_signals_from_csv(cogload_path)
 
@@ -111,8 +147,25 @@ def run_pipeline(baseline_path, cogload_path):
         y_pred = np.array(ro.r('y_pred'), dtype=int)
         rules = list(ro.r('rules'))
 
-    # Display rules
     console.print(Rule("✅ Output"))
+    
+    panel = Panel.fit(
+        Text("Optimal Window Size: " + str(optimal_window_size), style="bold white"),
+        title="[bold green]Optimal Parameters",
+        border_style="green",
+        padding=(1, 2),
+    )
+    console.print(panel)
+
+    panel = Panel.fit(
+        Text("Optimal Step Size: " + str(optimal_step_size), style="bold white"),
+        title="[bold green]Optimal Parameters",
+        border_style="green",
+        padding=(1, 2),
+    )
+    console.print(panel)
+
+    # Display rules
     print_rules_pretty(rules)
     
     # Display accuracy
@@ -124,7 +177,8 @@ def run_pipeline(baseline_path, cogload_path):
         padding=(1, 2),
     )
     console.print(panel)
-    
+# pylint: enable=too-many-locals
+
 @click.command()
 @click.option("--baseline", required=True, type=click.Path(exists=True), help="CSV file for baseline signal.")
 @click.option("--cogload", required=True, type=click.Path(exists=True), help="CSV file for cognitive load signal.")
@@ -133,5 +187,7 @@ def cli(baseline, cogload):
     # with silent_rpy2():
     run_pipeline(baseline, cogload)
 
+# pylint: disable=no-value-for-parameter
 if __name__ == "__main__":
     cli()
+# pylint: enable=no-value-for-parameter
