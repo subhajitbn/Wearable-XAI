@@ -3,8 +3,12 @@ pilot/
 survey_gamification/
 DataCard/
 
+# Intermediate files
+*.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
+*.npy
 *.py[cod]
 *$py.class
 
