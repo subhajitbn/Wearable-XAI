@@ -12,6 +12,11 @@ def grid_search_for_optimal_window_size(baseline_signal, cogload_signal, window_
             baseline_features, feature_names = create_windows_and_features(baseline_signal, window_size, step_size)
             cogload_features, _ = create_windows_and_features(cogload_signal, window_size, step_size)
 
+            # Ensure both feature sets are of uniform length
+            uniform_length = min(len(baseline_features), len(cogload_features))
+            baseline_features = baseline_features[:uniform_length]
+            cogload_features = cogload_features[:uniform_length]
+            
             # Merge baseline and cognitive load features
             X = np.vstack([baseline_features, cogload_features])
             y = np.concatenate([np.zeros(len(baseline_features)), np.ones(len(cogload_features))])
