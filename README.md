@@ -41,4 +41,4 @@ An end-to-end, semi-automated pipeline that:
 
 ## 🔍 Summary
 
-This repo is not about pushing model accuracy. Indeed, it's hard to define the true label of a BVP windows. A person can be quite calm at times while handling cognitive load, and somewhat agitated at times while providing baseline measurements. It's about showing how we can **bootstrap explainable, symbolic models from machine learning**, refine them with **human judgment**, and **deploy interpretable logic** instead of opaque AI. We believe this is the future of trustworthy, personalizable AI in wearables.
+This repo is not about pushing model accuracy. Indeed, it's hard to define the true label of a BVP window. A person can be quite calm at times while handling cognitive load, and somewhat agitated at times while providing baseline measurements. It's about showing how we can **bootstrap explainable, symbolic models from machine learning**, refine them with **human judgment**, and **deploy interpretable logic** instead of opaque AI. We believe this is the future of trustworthy, personalizable AI in wearables.
