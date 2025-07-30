@@ -34,5 +34,5 @@ jobs:
 
       - name: Run pylint
         run: |
-          uv pip install pylint
-          pylint src main.py
+          uv pip install --system pylint
+          uv run pylint src main.py
