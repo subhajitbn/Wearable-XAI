@@ -1,9 +1,14 @@
+"""
+Streamlit app for rule extraction and visualization.
+"""
 import os
 import re
-import streamlit as st
-from main import run_pipeline
 import tempfile
-import uuid
+
+import streamlit as st
+
+from main import run_pipeline
+
 
 
 def format_rule_latex(rule: str) -> str:
@@ -101,4 +106,3 @@ if st.button("Run Extraction"):
 
             st.subheader("📊 Performance Metrics")
             st.markdown(f"**Accuracy:** {results['accuracy']:.2%}")
-

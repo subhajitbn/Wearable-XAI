@@ -113,7 +113,7 @@ def print_run_pipeline_outputs(optimal_window_size, optimal_step_size, rules, ac
     )
     console.print(panel)
 
-# pylint: disable=too-many-locals
+# pylint: disable=too-many-locals, inconsistent-return-statements
 def run_pipeline(baseline_path, cogload_path, seed, return_results):
 
     # Load signals
@@ -192,11 +192,11 @@ def run_pipeline(baseline_path, cogload_path, seed, return_results):
             "rules": rules,
             "accuracy": accuracy
         }
-    else:
-        print_run_pipeline_outputs(optimal_window_size, optimal_step_size, rules, accuracy)
+    
+    print_run_pipeline_outputs(optimal_window_size, optimal_step_size, rules, accuracy)
         
 
-# pylint: enable=too-many-locals
+# pylint: enable=too-many-locals, inconsistent-return-statements
 
 
 @click.command()
