@@ -10,6 +10,26 @@ This repository demonstrates a concrete proof-of-concept for that philosophy, us
 
 ---
 
+## Dependencies
+
+## 📦 Install Dependencies
+Note that [R]() is a dependency of this project.
+First, make sure you have [uv](https://github.com/astral-sh/uv) installed:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Then, from the root of the repository:
+```bash
+uv venv         # Create a virtual environment
+uv pip install -e .  # Install your package in editable mode from pyproject.toml
+```
+
+
+
+---
+
 ## 📂 Repository Structure
 
 ### `exploration.ipynb`

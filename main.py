@@ -32,7 +32,7 @@ from src.grid_search import grid_search_for_optimal_window_size
 import re
 # pylint: enable=wrong-import-order, wrong-import-position, ungrouped-imports
 
-seed = 4242  # For reproducibility
+# seed = 4242  # For reproducibility
 console = Console()
 
 def print_rules_pretty(rules):
@@ -77,9 +77,44 @@ def print_rules_pretty(rules):
         padding=(1, 2),
     )
     console.print(panel)
+    
+def print_run_pipeline_outputs(optimal_window_size, optimal_step_size, rules, accuracy):
+    """
+    Prints the results of running the rule extraction pipeline.
+
+    Parameters:
+    optimal_window_size (int): The optimal window size for rule extraction.
+    optimal_step_size (int): The optimal step size for rule extraction.
+    rules (list of str): A list of extracted rules.
+    accuracy (float): The accuracy of the extracted rules.
+    """
+    console.print(Rule("✅ Output"))
+        
+    panel = Panel.fit(
+        Text("Optimal Window Size: " 
+             + str(optimal_window_size) 
+             + "\nOptimal Step Size: " 
+             + str(optimal_step_size), style="bold white"),
+        title="[bold green]Optimal Parameters",
+        border_style="green",
+        padding=(1, 2),
+    )
+    console.print(panel)
+
+    # Display rules
+    print_rules_pretty(rules)
+    
+    # Display accuracy    
+    panel = Panel.fit(
+        Text(f"Accuracy: {accuracy:.2f}", style="bold white"),
+        title="[bold green]Prediction Metrics",
+        border_style="green",
+        padding=(1, 2),
+    )
+    console.print(panel)
 
 # pylint: disable=too-many-locals
-def run_pipeline(baseline_path, cogload_path):
+def run_pipeline(baseline_path, cogload_path, seed, return_results):
 
     # Load signals
     """
@@ -120,12 +155,11 @@ def run_pipeline(baseline_path, cogload_path):
     df = pd.DataFrame(X, columns=feature_names).loc[:, selected_features].round(2)
     df["label"] = y
     
-    with suppress_output():
-        # Set seed in R environment
-        ro.r.assign("seed", seed)  
-        
+    with suppress_output():  
         # Push pandas DataFrame to R using context manager
         with localconverter(ro.default_converter + pandas2ri.converter):
+            # Set seed in R environment
+            ro.globalenv['seed'] = seed
             ro.globalenv['features_for_sirus'] = ro.conversion.py2rpy(df)
 
         # R code block for SIRUS model fitting and rule extraction
@@ -147,45 +181,33 @@ def run_pipeline(baseline_path, cogload_path):
         y_pred = np.array(ro.r('y_pred'), dtype=int)
         rules = list(ro.r('rules'))
 
-    console.print(Rule("✅ Output"))
+    # Compute accuracy
+    accuracy = np.mean(y_pred == y)
     
-    panel = Panel.fit(
-        Text("Optimal Window Size: " + str(optimal_window_size), style="bold white"),
-        title="[bold green]Optimal Parameters",
-        border_style="green",
-        padding=(1, 2),
-    )
-    console.print(panel)
+    if return_results:
+        # Return everything for Streamlit
+        return {
+            "optimal_window_size": optimal_window_size,
+            "optimal_step_size": optimal_step_size,
+            "rules": rules,
+            "accuracy": accuracy
+        }
+    else:
+        print_run_pipeline_outputs(optimal_window_size, optimal_step_size, rules, accuracy)
+        
 
-    panel = Panel.fit(
-        Text("Optimal Step Size: " + str(optimal_step_size), style="bold white"),
-        title="[bold green]Optimal Parameters",
-        border_style="green",
-        padding=(1, 2),
-    )
-    console.print(panel)
-
-    # Display rules
-    print_rules_pretty(rules)
-    
-    # Display accuracy
-    accuracy = np.mean(y_pred == y)    
-    panel = Panel.fit(
-        Text(f"Accuracy: {accuracy:.2f}", style="bold white"),
-        title="[bold green]Prediction Metrics",
-        border_style="green",
-        padding=(1, 2),
-    )
-    console.print(panel)
 # pylint: enable=too-many-locals
+
 
 @click.command()
 @click.option("--baseline", required=True, type=click.Path(exists=True), help="CSV file for baseline signal.")
 @click.option("--cogload", required=True, type=click.Path(exists=True), help="CSV file for cognitive load signal.")
-def cli(baseline, cogload):
+@click.option("--seed", default=4242, type=int, help="Random seed for reproducibility.")
+def cli(baseline, cogload, seed):
     """Run rule extraction pipeline on BVP signals."""
+    return_results=False
     # with silent_rpy2():
-    run_pipeline(baseline, cogload)
+    run_pipeline(baseline, cogload, seed, return_results)
 
 # pylint: disable=no-value-for-parameter
 if __name__ == "__main__":

@@ -3,7 +3,7 @@ name = "wearable-xai"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.11"
 dependencies = [
     "click>=8.2.1",
     "ipykernel>=6.30.0",
@@ -16,6 +16,7 @@ dependencies = [
     "rpy2>=3.6.1",
     "scikit-learn>=1.7.1",
     "seaborn>=0.13.2",
+    "streamlit>=1.47.1",
 ]
 
 [dependency-groups]
