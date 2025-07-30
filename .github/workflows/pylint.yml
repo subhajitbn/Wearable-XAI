@@ -36,3 +36,9 @@ jobs:
         run: |
           uv pip install --system pylint
           uv run pylint src main.py
+
+      - name: Run tests with pytest
+        run: |
+          uv pip install --system pytest  # Install pytest into system Python
+          uv run pytest tests/  # Run tests in your tests/ directory
+
