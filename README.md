@@ -1,6 +1,6 @@
 # Personalized Wearables via Rule-Based eXplainable AI
 
-## 🚀 Motivation
+## 💡 Motivation
 
 Wearable devices collect deeply personal physiological data, yet their core inference models are often opaque, centralized, and poorly suited to individual needs. Over-reliance on black-box AI models trained on unrepresentative datasets risks both bias and misinterpretation.
 
@@ -10,27 +10,61 @@ This repository demonstrates a concrete proof-of-concept for that philosophy, us
 
 ---
 
-## Dependencies
+## 🚀 Option 1: Run in a Docker Container
 
-## 📦 Install Dependencies
-Note that [R]() is a dependency of this project.
-First, make sure you have [uv](https://github.com/astral-sh/uv) installed:
+This is the easiest and cleanest way to get started. You do **not** need to install R, Python dependencies, or `uv` locally.
 
+### Build the Docker image:
+From the root of the repository:
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
+docker build -t wearable-xai .
 ```
 
-Then, from the root of the repository:
+### Run the CLI in the container:
+To run the CLI with already provided CSV files for baseline and cognitive load signals of participant 3 from the CogWear dataset:
 ```bash
-uv venv         # Create a virtual environment
-uv pip install -e .  # Install your package in editable mode from pyproject.toml
+docker run --rm -v $PWD:/app wearable-xai uv run main.py --baseline baseline_bvp_p3.csv --cogload cogload_bvp_p3.csv --seed 4242
 ```
 
-
+### Run the web app in the container:
+```bash
+docker run --rm -p 8501:8501 --rm -v $PWD:/app wearable-xai uv run streamlit run app.py
+```
+or, simply,
+```bash
+docker run -p 8501:8501 wearable-xai
+```
 
 ---
 
-## 📂 Repository Structure
+## 🧪 Option 2: Run Locally without Container
+
+### Install dependencies
+The project depends on [R](https://www.r-project.org)(4.3.1) and [uv](https://github.com/astral-sh/uv), which can be installed from their respective websites. 
+
+Next, We need the `SIRUS` package from CRAN. This is the main eXplainable AI package that we use for rule extraction. For details, see the original articles [here](https://proceedings.mlr.press/v130/benard21a.html) and [here](https://doi.org/10.1214/20-EJS1792). We also refer to the excellent [Implementation Overview](https://sirus.jl.huijzer.xyz/dev/implementation-overview/) section in the documentation of [SIRUS.jl](https://github.com/rikhuijzer/SIRUS.jl).
+```bash
+Rscript -e "install.packages('sirus', repos='https://cloud.r-project.org')"
+```
+After installing R, `SIRUS` and uv, run the following command to sync Python dependencies:
+```bash
+uv sync --locked
+```
+
+### Run the CLI
+To run the CLI with already provided CSV files for baseline and cognitive load signals of participant 3 from the CogWear dataset:
+```bash
+uv run main.py --baseline baseline_bvp_p3.csv --cogload cogload_bvp_p3.csv --seed 4242
+```
+
+### Run the web app
+```bash
+uv run streamlit run app.py
+```
+
+---
+
+## 📘 Pipeline Breakdown: See the Two Notebooks
 
 ### `exploration.ipynb`
 
@@ -44,7 +78,6 @@ An interactive, step-by-step notebook to:
 
 > This notebook captures the reasoning process—what features matter, why they matter, and how the model can be simplified.
 
----
 
 ### `pipeline.ipynb`
 
@@ -61,4 +94,4 @@ An end-to-end, semi-automated pipeline that:
 
 ## 🔍 Summary
 
-This repo is not about pushing model accuracy. Indeed, it's hard to define the true label of a BVP window. A person can be quite calm at times while handling cognitive load, and somewhat agitated at times while providing baseline measurements. It's about showing how we can **bootstrap explainable, symbolic models from machine learning**, refine them with **human judgment**, and **deploy interpretable logic** instead of opaque AI. We believe this is the future of trustworthy, personalizable AI in wearables.
+This project is not about pushing model accuracy. Indeed, it's hard to define the true label of a BVP window. A person can be quite calm at times while handling cognitive load, and somewhat agitated at times while providing baseline measurements. It's about showing how we can **bootstrap explainable, symbolic models from machine learning**, refine them with **human judgment**, and **deploy interpretable logic** instead of opaque AI. We believe this is the future of trustworthy, personalizable AI in wearables.
