@@ -40,7 +40,7 @@ docker run -p 8501:8501 wearable-xai
 ## 🧪 Option 2: Run Locally without Container
 
 ### Install dependencies
-The project depends on [R](https://www.r-project.org)(4.3.1) and [uv](https://github.com/astral-sh/uv), which can be installed from their respective websites. 
+The project depends on [R](https://www.r-project.org) (4.3.1) and [uv](https://github.com/astral-sh/uv), which can be installed from their respective websites. 
 
 Next, We need the `SIRUS` package from CRAN. This is the main eXplainable AI package that we use for rule extraction. For details, see the original articles [here](https://proceedings.mlr.press/v130/benard21a.html) and [here](https://doi.org/10.1214/20-EJS1792). We also refer to the excellent [Implementation Overview](https://sirus.jl.huijzer.xyz/dev/implementation-overview/) section in the documentation of [SIRUS.jl](https://github.com/rikhuijzer/SIRUS.jl).
 ```bash
