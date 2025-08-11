@@ -202,7 +202,7 @@ def run_pipeline(baseline_path, cogload_path, seed, return_results):
 @click.command()
 @click.option("--baseline", required=True, type=click.Path(exists=True), help="CSV file for baseline signal.")
 @click.option("--cogload", required=True, type=click.Path(exists=True), help="CSV file for cognitive load signal.")
-@click.option("--seed", default=4242, type=int, help="Random seed for reproducibility.")
+@click.option("--seed", default=None, type=int, help="Random seed for reproducibility. Defaults to None. Try with 4242.")
 def cli(baseline, cogload, seed):
     """Run rule extraction pipeline on BVP signals."""
     return_results=False
