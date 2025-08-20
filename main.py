@@ -159,14 +159,18 @@ def run_pipeline(baseline_path, cogload_path, seed, return_results):
         # Push pandas DataFrame to R using context manager
         with localconverter(ro.default_converter + pandas2ri.converter):
             # Set seed in R environment
-            ro.globalenv['seed'] = seed
+            if seed:
+                ro.globalenv['seed'] = seed
+            else:
+                ro.globalenv['seed'] = 0
             ro.globalenv['features_for_sirus'] = ro.conversion.py2rpy(df)
 
         # R code block for SIRUS model fitting and rule extraction
         ro.r('''
         require(sirus)
-        set.seed(seed)  # For reproducibility
-        
+        if(seed != 0) {
+            set.seed(seed)  # For reproducibility
+        }
         data <- features_for_sirus[, -ncol(features_for_sirus)]
         data <- as.data.frame(data)
         y <- features_for_sirus$label
@@ -180,7 +184,7 @@ def run_pipeline(baseline_path, cogload_path, seed, return_results):
     with localconverter(ro.default_converter + pandas2ri.converter):
         y_pred = np.array(ro.r('y_pred'), dtype=int)
         rules = list(ro.r('rules'))
-
+    
     # Compute accuracy
     accuracy = np.mean(y_pred == y)
     
@@ -202,7 +206,7 @@ def run_pipeline(baseline_path, cogload_path, seed, return_results):
 @click.command()
 @click.option("--baseline", required=True, type=click.Path(exists=True), help="CSV file for baseline signal.")
 @click.option("--cogload", required=True, type=click.Path(exists=True), help="CSV file for cognitive load signal.")
-@click.option("--seed", default=None, type=int, help="Random seed for reproducibility. Defaults to None. Try with 4242.")
+@click.option("--seed", type=int, default=None, help="Random seed for reproducibility. Defaults to None. Try with 4242.")
 def cli(baseline, cogload, seed):
     """Run rule extraction pipeline on BVP signals."""
     return_results=False
