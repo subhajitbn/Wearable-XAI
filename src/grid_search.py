@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 
-from .utils import create_windows_and_features
+from utils import create_windows_and_features
 
 def make_uniform_length(baseline_features, cogload_features):
     """
@@ -39,8 +39,13 @@ def perform_random_forest_classification(X, y, seed):
     accuracy : float
         Accuracy of the model on the test set.
     """
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8, stratify=y, random_state=seed)
-    model = RandomForestClassifier(n_estimators=100, random_state=seed)
+    if seed:
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8, stratify=y, random_state=seed)
+        model = RandomForestClassifier(n_estimators=100, random_state=seed)
+    else:
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8, stratify=y)
+        model = RandomForestClassifier(n_estimators=100)
+    
     model.fit(X_train, y_train)
     
     y_pred = model.predict(X_test)
@@ -48,7 +53,7 @@ def perform_random_forest_classification(X, y, seed):
     accuracy = model_report['accuracy']
     return model, X, y, accuracy
 
-def grid_search_for_optimal_window_size(baseline_signal, cogload_signal, window_sizes, step_sizes, threshold=0.95, seed=42):
+def grid_search_for_optimal_window_size(baseline_signal, cogload_signal, window_sizes, step_sizes, threshold=0.95, seed=None):
     """
     Perform a grid search for optimal window size and step size in time series data analysis.
 
@@ -96,7 +101,7 @@ def grid_search_for_optimal_window_size(baseline_signal, cogload_signal, window_
             X = np.vstack([baseline_features, cogload_features])
             y = np.concatenate([np.zeros(len(baseline_features)), np.ones(len(cogload_features))])
             
-            # Perform random forest classification
+            # Perform random forest classification 
             model, X, y, accuracy = perform_random_forest_classification(X, y, seed)
             
             if accuracy >= threshold:
@@ -104,4 +109,4 @@ def grid_search_for_optimal_window_size(baseline_signal, cogload_signal, window_
                 # print("Classification Report:\n", classification_report(y_test, y_pred))
                 return model, X, y, feature_names, window_size, step_size
             
-            raise ValueError(f"Accuracy {accuracy} is below threshold.")
+    raise ValueError(f"Accuracy {accuracy} is below threshold.")

@@ -3,7 +3,7 @@ Main script for running the rule extraction pipeline on BVP signals.
 This script loads baseline and cognitive load signals from CSV files, performs a grid search for optimal window and step sizes,
 """
 # pylint: disable=wrong-import-order, wrong-import-position, ungrouped-imports
-from src.suppress_errmsg import suppress_rpy2_and_other_errmsg, suppress_output
+from suppress_errmsg import suppress_rpy2_and_other_errmsg, suppress_output
 suppress_rpy2_and_other_errmsg()
 
 # CLI tools
@@ -24,8 +24,8 @@ from rpy2.robjects import pandas2ri
 from rpy2.robjects.conversion import localconverter
 
 # Custom modules
-from src.utils import load_signals_from_csv
-from src.grid_search import grid_search_for_optimal_window_size
+from utils import load_signals_from_csv
+from grid_search import grid_search_for_optimal_window_size
 # from src.suppress_errmsg import silent_rpy2
 
 # Regex for styling rules

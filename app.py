@@ -7,7 +7,7 @@ import tempfile
 
 import streamlit as st
 
-from main import run_pipeline
+from single_run import run_pipeline
 
 
 

@@ -5,7 +5,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from .engineered_features import create_features
+from engineered_features import create_features
 
 def load_signals_from_csv(file_path, column="bvp", sampling_rate=64, trim_seconds=5):
     """

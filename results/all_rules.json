@@ -1,0 +1,200 @@
+{
+  "0": {
+    "optimal_window_size": 1024,
+    "optimal_step_size": 64,
+    "accuracy": 0.9519774011299436,
+    "rules": [
+      " [1] \"Proportion of class 1 = 0.5 - Sample size n = 354\"                                                 ",
+      " [2] \"if sign_changes < 80 then 0.978 (n=137) else 0.198 (n=217)\"                                        ",
+      " [3] \"if post_peak_area < 2480 then 0.0634 (n=142) else 0.792 (n=212)\"                                   ",
+      " [4] \"if mean_peak_prominence < 60.2 then 0.0795 (n=176) else 0.916 (n=178)\"                             ",
+      " [5] \"if sign_changes >= 80 & post_peak_area >= 2480 then 0.488 (n=84) else 0.504 (n=270)\"               ",
+      " [6] \"if sign_changes >= 80 & mean_peak_prominence >= 60.2 then 0.745 (n=51) else 0.459 (n=303)\"         ",
+      " [7] \"if mean_peak_prominence >= 60.2 & post_peak_area >= 2480 then 0.945 (n=164) else 0.116 (n=190)\"    ",
+      " [8] \"if mean_peak_prominence >= 48.2 & mean_peak_prominence < 60.2 then 0.412 (n=34) else 0.509 (n=320)\"",
+      " [9] \"if post_peak_area >= 2480 & post_peak_area < 5500 then 0.911 (n=168) else 0.129 (n=186)\"           ",
+      "[10] \"if sign_changes < 78 then 1 (n=104) else 0.292 (n=250)\"                                            ",
+      "[11] \"if sign_changes >= 80 & sign_changes < 90 then 0.305 (n=141) else 0.629 (n=213)\"                   "
+    ]
+  },
+  "1": {
+    "optimal_window_size": 2048,
+    "optimal_step_size": 64,
+    "accuracy": 0.9933333333333333,
+    "rules": [
+      " [1] \"Proportion of class 1 = 0.5 - Sample size n = 150\"                                     ",
+      " [2] \"if max_amp < 84.7 then 0 (n=75) else 1 (n=75)\"                                         ",
+      " [3] \"if pre_peak_area < 1770 then 0.932 (n=44) else 0.321 (n=106)\"                          ",
+      " [4] \"if post_peak_area < 1960 then 0 (n=54) else 0.781 (n=96)\"                              ",
+      " [5] \"if post_peak_area >= 1960 & post_peak_area < 2370 then 0.562 (n=48) else 0.471 (n=102)\"",
+      " [6] \"if pre_peak_area < 1470 then 0.909 (n=11) else 0.468 (n=139)\"                          ",
+      " [7] \"if max_amp < 84.7 & pre_peak_area >= 1770 then 0 (n=72) else 0.962 (n=78)\"             ",
+      " [8] \"if max_amp < 84.7 & post_peak_area >= 1960 then 0 (n=21) else 0.581 (n=129)\"           ",
+      " [9] \"if post_peak_area >= 1960 & pre_peak_area < 1980 then 0.983 (n=58) else 0.196 (n=92)\"  ",
+      "[10] \"if post_peak_area < 1960 & pre_peak_area >= 1770 then 0 (n=52) else 0.765 (n=98)\"      ",
+      "[11] \"if post_peak_area < 1870 & pre_peak_area < 1770 then 0 (n=2) else 0.507 (n=148)\"       "
+    ]
+  },
+  "10": {
+    "optimal_window_size": 2048,
+    "optimal_step_size": 64,
+    "accuracy": 0.9819277108433735,
+    "rules": [
+      " [1] \"Proportion of class 1 = 0.5 - Sample size n = 166\"                                              ",
+      " [2] \"if mean_peak_prominence < 163 then 0.976 (n=83) else 0.0241 (n=83)\"                             ",
+      " [3] \"if max_amp < 131 then 0.101 (n=89) else 0.961 (n=77)\"                                           ",
+      " [4] \"if mean_peak_width < 27.8 then 0.928 (n=83) else 0.0723 (n=83)\"                                 ",
+      " [5] \"if mean_peak_width >= 27.8 & mean_peak_prominence >= 163 then 0.0132 (n=76) else 0.911 (n=90)\"  ",
+      " [6] \"if max_amp < 131 & mean_peak_width >= 26.7 then 0 (n=80) else 0.965 (n=86)\"                     ",
+      " [7] \"if mean_peak_prominence >= 163 & mean_peak_prominence < 168 then 0.125 (n=16) else 0.54 (n=150)\"",
+      " [8] \"if max_amp >= 131 & max_amp < 142 then 0.914 (n=35) else 0.389 (n=131)\"                         ",
+      " [9] \"if mean_peak_prominence < 148 then 1 (n=66) else 0.17 (n=100)\"                                  ",
+      "[10] \"if max_amp < 120 & mean_peak_prominence < 163 then 0 (n=2) else 0.506 (n=164)\"                  ",
+      "[11] \"if max_amp >= 131 & mean_peak_prominence < 163 then 1 (n=72) else 0.117 (n=94)\"                 "
+    ]
+  },
+  "2": {
+    "optimal_window_size": 512,
+    "optimal_step_size": 1024,
+    "accuracy": 1.0,
+    "rules": [
+      " [1] \"Proportion of class 1 = 0.5 - Sample size n = 22\"                             ",
+      " [2] \"if pre_peak_area < 3920 then 0.154 (n=13) else 1 (n=9)\"                       ",
+      " [3] \"if post_peak_area < 4050 then 0 (n=9) else 0.846 (n=13)\"                      ",
+      " [4] \"if max_amp < 185 then 0 (n=9) else 0.846 (n=13)\"                              ",
+      " [5] \"if pre_peak_area < 3580 then 0.0909 (n=11) else 0.909 (n=11)\"                 ",
+      " [6] \"if max_amp < 266 then 0.154 (n=13) else 1 (n=9)\"                              ",
+      " [7] \"if post_peak_area < 5550 then 0.154 (n=13) else 1 (n=9)\"                      ",
+      " [8] \"if max_amp < 247 then 0.0909 (n=11) else 0.909 (n=11)\"                        ",
+      " [9] \"if post_peak_area < 4600 then 0.0909 (n=11) else 0.909 (n=11)\"                ",
+      "[10] \"if pre_peak_area < 3300 then 0 (n=7) else 0.733 (n=15)\"                       ",
+      "[11] \"if post_peak_area >= 4050 & pre_peak_area >= 3300 then 1 (n=11) else 0 (n=11)\""
+    ]
+  },
+  "3": {
+    "optimal_window_size": 128,
+    "optimal_step_size": 256,
+    "accuracy": 0.9523809523809523,
+    "rules": [
+      " [1] \"Proportion of class 1 = 0.5 - Sample size n = 42\"                            ",
+      " [2] \"if max_amp < 30.4 then 0.0476 (n=21) else 0.952 (n=21)\"                      ",
+      " [3] \"if sign_changes < 8 then 0.273 (n=22) else 0.75 (n=20)\"                      ",
+      " [4] \"if pre_peak_area < 685 then 0.2 (n=25) else 0.941 (n=17)\"                    ",
+      " [5] \"if pre_peak_area < 645 then 0.143 (n=21) else 0.857 (n=21)\"                  ",
+      " [6] \"if sign_changes < 6.4 then 0.235 (n=17) else 0.68 (n=25)\"                    ",
+      " [7] \"if max_amp < 30.4 & pre_peak_area >= 645 then 0.25 (n=4) else 0.526 (n=38)\"  ",
+      " [8] \"if sign_changes < 8 & pre_peak_area < 685 then 0.0588 (n=17) else 0.8 (n=25)\"",
+      " [9] \"if sign_changes < 8 & pre_peak_area < 645 then 0 (n=14) else 0.75 (n=28)\"    ",
+      "[10] \"if max_amp >= 30.4 & sign_changes >= 6.4 then 1 (n=17) else 0.16 (n=25)\"     ",
+      "[11] \"if max_amp >= 26.5 & max_amp < 30.4 then 0.25 (n=4) else 0.526 (n=38)\"       "
+    ]
+  },
+  "4": {
+    "optimal_window_size": 2048,
+    "optimal_step_size": 128,
+    "accuracy": 0.9225352112676056,
+    "rules": [
+      " [1] \"Proportion of class 1 = 0.5 - Sample size n = 142\"                                             ",
+      " [2] \"if mean_peak_prominence < 89.8 then 0.895 (n=57) else 0.235 (n=85)\"                            ",
+      " [3] \"if mean_peak_width < 25.1 then 1 (n=57) else 0.165 (n=85)\"                                     ",
+      " [4] \"if max_amp < 92.8 then 0.133 (n=15) else 0.543 (n=127)\"                                        ",
+      " [5] \"if mean_peak_width >= 25.1 & mean_peak_prominence >= 89.8 then 0.0972 (n=72) else 0.914 (n=70)\"",
+      " [6] \"if mean_peak_width < 25.6 then 0.901 (n=71) else 0.0986 (n=71)\"                                ",
+      " [7] \"if mean_peak_prominence < 89.8 & max_amp >= 92.8 then 0.925 (n=53) else 0.247 (n=89)\"          ",
+      " [8] \"if max_amp < 130 then 0.394 (n=71) else 0.606 (n=71)\"                                          ",
+      " [9] \"if mean_peak_prominence < 83.9 then 1 (n=29) else 0.372 (n=113)\"                               ",
+      "[10] \"if mean_peak_prominence >= 89.8 & max_amp < 189 then 0.0702 (n=57) else 0.788 (n=85)\"          ",
+      "[11] \"if max_amp >= 92.8 & max_amp < 107 then 1 (n=14) else 0.445 (n=128)\"                           "
+    ]
+  },
+  "5": {
+    "optimal_window_size": 1024,
+    "optimal_step_size": 64,
+    "accuracy": 0.9315789473684211,
+    "rules": [
+      " [1] \"Proportion of class 1 = 0.5 - Sample size n = 190\"                                      ",
+      " [2] \"if pre_peak_area < 833 then 0.736 (n=91) else 0.283 (n=99)\"                             ",
+      " [3] \"if sign_changes < 87 then 0.17 (n=94) else 0.823 (n=96)\"                                ",
+      " [4] \"if mean_peak_width < 21.2 then 0.754 (n=114) else 0.118 (n=76)\"                         ",
+      " [5] \"if sign_changes >= 80 & pre_peak_area < 833 then 0.971 (n=69) else 0.231 (n=121)\"       ",
+      " [6] \"if pre_peak_area >= 500 & pre_peak_area < 833 then 0.875 (n=72) else 0.271 (n=118)\"     ",
+      " [7] \"if pre_peak_area >= 833 & pre_peak_area < 1140 then 0.0179 (n=56) else 0.701 (n=134)\"   ",
+      " [8] \"if mean_peak_width < 18.5 then 0.965 (n=57) else 0.301 (n=133)\"                         ",
+      " [9] \"if mean_peak_width >= 18.5 & pre_peak_area >= 833 then 0.0921 (n=76) else 0.772 (n=114)\"",
+      "[10] \"if sign_changes < 80 then 0.107 (n=75) else 0.757 (n=115)\"                              ",
+      "[11] \"if mean_peak_width < 22.4 & pre_peak_area < 833 then 0.942 (n=69) else 0.248 (n=121)\"   "
+    ]
+  },
+  "6": {
+    "optimal_window_size": 512,
+    "optimal_step_size": 64,
+    "accuracy": 0.9603658536585366,
+    "rules": [
+      " [1] \"Proportion of class 1 = 0.5 - Sample size n = 328\"                                                 ",
+      " [2] \"if mean_peak_prominence < 45.2 then 0.0366 (n=164) else 0.963 (n=164)\"                             ",
+      " [3] \"if max_amp < 115 then 0.037 (n=162) else 0.952 (n=166)\"                                            ",
+      " [4] \"if pre_peak_area < 1620 then 0.0617 (n=162) else 0.928 (n=166)\"                                    ",
+      " [5] \"if mean_peak_prominence >= 45.2 & pre_peak_area < 1620 then 0.615 (n=13) else 0.495 (n=315)\"       ",
+      " [6] \"if pre_peak_area < 1620 & max_amp < 115 then 0 (n=151) else 0.927 (n=177)\"                         ",
+      " [7] \"if mean_peak_prominence >= 45.2 & max_amp < 115 then 0.25 (n=8) else 0.506 (n=320)\"                ",
+      " [8] \"if mean_peak_prominence >= 45.2 & mean_peak_prominence < 68.4 then 0.818 (n=33) else 0.464 (n=295)\"",
+      " [9] \"if max_amp < 62.1 then 0 (n=128) else 0.82 (n=200)\"                                                ",
+      "[10] \"if max_amp >= 115 & max_amp < 185 then 0.867 (n=60) else 0.418 (n=268)\"                            ",
+      "[11] \"if pre_peak_area < 2390 & max_amp >= 115 then 0.778 (n=36) else 0.466 (n=292)\"                     "
+    ]
+  },
+  "7": {
+    "optimal_window_size": 1024,
+    "optimal_step_size": 256,
+    "accuracy": 0.9,
+    "rules": [
+      " [1] \"Proportion of class 1 = 0.5 - Sample size n = 50\"                                              ",
+      " [2] \"if pre_peak_area < 2640 then 0.84 (n=25) else 0.16 (n=25)\"                                     ",
+      " [3] \"if mean_peak_prominence < 93.7 then 0.96 (n=25) else 0.04 (n=25)\"                              ",
+      " [4] \"if max_amp < 111 then 0.76 (n=25) else 0.24 (n=25)\"                                            ",
+      " [5] \"if mean_peak_prominence < 93.7 & pre_peak_area >= 2640 then 0.75 (n=4) else 0.478 (n=46)\"      ",
+      " [6] \"if pre_peak_area < 2640 & max_amp < 111 then 0.941 (n=17) else 0.273 (n=33)\"                   ",
+      " [7] \"if max_amp < 104 then 1 (n=9) else 0.39 (n=41)\"                                                ",
+      " [8] \"if mean_peak_prominence >= 86.2 & mean_peak_prominence < 93.7 then 0.8 (n=5) else 0.467 (n=45)\"",
+      " [9] \"if pre_peak_area >= 2640 & max_amp < 109 then 0.375 (n=8) else 0.524 (n=42)\"                   ",
+      "[10] \"if mean_peak_prominence >= 93.7 & mean_peak_prominence < 102 then 0.2 (n=5) else 0.533 (n=45)\" ",
+      "[11] \"if max_amp >= 111 & max_amp < 129 then 0.111 (n=18) else 0.719 (n=32)\"                         "
+    ]
+  },
+  "8": {
+    "optimal_window_size": 128,
+    "optimal_step_size": 64,
+    "accuracy": 0.9069767441860465,
+    "rules": [
+      " [1] \"Proportion of class 1 = 0.5 - Sample size n = 344\"                                                 ",
+      " [2] \"if pre_peak_area < 1650 then 0.204 (n=206) else 0.942 (n=138)\"                                     ",
+      " [3] \"if max_amp < 71.7 then 0.0529 (n=170) else 0.937 (n=174)\"                                          ",
+      " [4] \"if mean_peak_prominence < 59.1 then 0.122 (n=172) else 0.878 (n=172)\"                              ",
+      " [5] \"if mean_peak_prominence < 59.1 & pre_peak_area < 1650 then 0.0523 (n=153) else 0.859 (n=191)\"      ",
+      " [6] \"if max_amp >= 71.7 & pre_peak_area >= 1650 then 0.97 (n=134) else 0.2 (n=210)\"                     ",
+      " [7] \"if max_amp >= 53.3 & max_amp < 71.7 then 0.281 (n=32) else 0.522 (n=312)\"                          ",
+      " [8] \"if max_amp >= 71.7 & max_amp < 87.5 then 0.694 (n=36) else 0.477 (n=308)\"                          ",
+      " [9] \"if pre_peak_area >= 1650 & pre_peak_area < 2150 then 0.8 (n=35) else 0.466 (n=309)\"                ",
+      "[10] \"if mean_peak_prominence < 39.6 then 0.00971 (n=103) else 0.71 (n=241)\"                             ",
+      "[11] \"if mean_peak_prominence >= 59.1 & mean_peak_prominence < 86.6 then 0.754 (n=69) else 0.436 (n=275)\""
+    ]
+  },
+  "9": {
+    "optimal_window_size": 128,
+    "optimal_step_size": 64,
+    "accuracy": 0.9772727272727273,
+    "rules": [
+      " [1] \"Proportion of class 1 = 0.5 - Sample size n = 220\"                                                 ",
+      " [2] \"if max_amp < 72.6 then 0.973 (n=110) else 0.0273 (n=110)\"                                          ",
+      " [3] \"if mean_peak_prominence < 53.2 then 0.964 (n=110) else 0.0364 (n=110)\"                             ",
+      " [4] \"if sign_changes < 10.4 then 0.174 (n=132) else 0.989 (n=88)\"                                       ",
+      " [5] \"if max_amp < 72.6 & sign_changes < 10.4 then 0.87 (n=23) else 0.457 (n=197)\"                       ",
+      " [6] \"if sign_changes < 7.6 then 0.0227 (n=88) else 0.818 (n=132)\"                                       ",
+      " [7] \"if mean_peak_prominence >= 53.2 & max_amp >= 72.6 then 0 (n=103) else 0.94 (n=117)\"                ",
+      " [8] \"if mean_peak_prominence >= 53.2 & sign_changes < 10.4 then 0.0187 (n=107) else 0.956 (n=113)\"      ",
+      " [9] \"if mean_peak_prominence < 53.2 & sign_changes >= 7.6 then 0.981 (n=106) else 0.0526 (n=114)\"       ",
+      "[10] \"if mean_peak_prominence >= 53.2 & mean_peak_prominence < 69.8 then 0.182 (n=22) else 0.535 (n=198)\"",
+      "[11] \"if max_amp < 54.1 then 1 (n=88) else 0.167 (n=132)\"                                                "
+    ]
+  }
+}
