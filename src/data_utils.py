@@ -5,8 +5,8 @@ import os
 import numpy as np
 import pandas as pd
 
-from .engineered_features import create_features
-from .utils import create_windows
+from engineered_features import create_features
+from utils import create_windows
 
 def load_device_signals(participant_id,
                         data_folder = "../data/",
@@ -23,7 +23,7 @@ def load_device_signals(participant_id,
     condition (str): The condition under which data was collected, e.g., 'baseline' or 'cognitive_load'. Defaults to "baseline".
 
     Returns:
-    dict: A dictionary containing physiological signals from each device. The keys are the device names, and the values are the signal values as a NumPy array.
+    dict: A dictionary containing physiological signals from each device. The keys are the signal types, and the values are the signal values as a NumPy array.
     """
 
     pid = str(participant_id)
