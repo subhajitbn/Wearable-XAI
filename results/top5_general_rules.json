@@ -1,0 +1,27 @@
+{
+  "max_amp <": {
+    "frequency": 18,
+    "median_impurity": 0.1901322137120761,
+    "weighted_score": 3.4223798468173694
+  },
+  "mean_peak_prominence <": {
+    "frequency": 17,
+    "median_impurity": 0.19795523132639198,
+    "weighted_score": 3.365238932548664
+  },
+  "post_peak_area <": {
+    "frequency": 10,
+    "median_impurity": 0.2607547956700552,
+    "weighted_score": 2.607547956700552
+  },
+  "mean_peak_width <": {
+    "frequency": 10,
+    "median_impurity": 0.248175504375,
+    "weighted_score": 2.48175504375
+  },
+  "pre_peak_area <": {
+    "frequency": 20,
+    "median_impurity": 0.09938961431769022,
+    "weighted_score": 1.9877922863538044
+  }
+}

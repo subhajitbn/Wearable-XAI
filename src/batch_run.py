@@ -3,7 +3,7 @@ import json
 from single_run import run_pipeline
 
 # Example: folder with participant subfolders containing baseline.csv & cogload.csv
-DATA_DIR = "data/pilot"
+DATA_DIR = "data/pilot/train/"
 OUTPUT_JSON = "results/all_rules.json"
 
 def run_all_participants(seed=None):
