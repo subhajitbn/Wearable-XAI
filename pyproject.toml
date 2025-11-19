@@ -15,8 +15,11 @@ dependencies = [
     "rpy2>=3.6.1",
     "scikit-learn>=1.7.1",
     "seaborn>=0.13.2",
-    "streamlit>=1.47.1",
+    "streamlit>=1.24.1",
 ]
+
+[tool.pandas]
+backend = "numpy"
 
 [dependency-groups]
 dev = [
